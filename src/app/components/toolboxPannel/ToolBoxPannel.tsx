@@ -8,7 +8,7 @@ import { useNodeContext } from "@/contexts/NodeContext";
 import { ToolBoxPannelProps } from "./ToolBoxPannel.type";
 import "./ToolBoxPannel.css";
 
-const ToolBoxPannel: FC<ToolBoxPannelProps> = ( { deleteNode, onSave } ) => {
+const ToolBoxPannel: FC<ToolBoxPannelProps> = ( { deleteNode, onSave, onSaveEndPoint, onLoadEndPoint } ) => {
   const { setType } = useDnD();
   const { visibleDetailBar, setVisibleDetailBar, setNodeModalOpen, setFileModalOpen } = useModalContext();
   const { currentNode } = useNodeContext();
@@ -75,12 +75,24 @@ const ToolBoxPannel: FC<ToolBoxPannelProps> = ( { deleteNode, onSave } ) => {
       {/* Separator */}
       <div className="separator"></div>
 
+      File : 
       <div className="dndnode" onClick={onSave} title="Save">
         <FaSave className="icon" />
       </div>
       <div className="dndnode" onClick={()=> setFileModalOpen(true)} title="Open">
         <FaFolderOpen className='icon'/>
       </div>
+
+      {/* Separator */}
+      <div className="separator"></div>
+      End Point : 
+      <div className="dndnode" onClick={onSaveEndPoint} title="Save">
+        <FaSave className="icon" />
+      </div>
+      <div className="dndnode" onClick={onLoadEndPoint} title="Open">
+        <FaFolderOpen className='icon'/>
+      </div>
+
 
     </div>
   );

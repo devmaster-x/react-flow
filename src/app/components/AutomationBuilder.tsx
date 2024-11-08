@@ -136,6 +136,49 @@ const AutomationBuilder = () => {
     setCurrentNode(_newNode);
   };
 
+  const onSave = async () => {
+    const data = { nodes, edges };
+
+    try {
+      const response = await fetch('/api/nodes', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        toast.success('Data saved successfully!');
+      } else {
+        toast.error('Failed to save data.');
+      }
+    } catch (error) {
+      toast.error('Error saving data.');
+      console.error(error);
+    }
+  }
+  const onLoad = async () => {
+    try {
+      const response = await fetch('/api/nodes');
+  
+      if (response.ok) {
+        const data = await response.json();
+  
+        if (data.nodes && data.edges) {
+          setNodes(data.nodes);
+          setEdges(data.edges);
+          toast.success('Data loaded successfully!');
+        } else {
+          toast.error('Invalid data format!');
+        }
+      } else {
+        toast.error('Failed to load data.');
+      }
+    } catch (error) {
+      toast.error('Error loading data.');
+      console.error(error);
+    }
+  }
+
   const saveToFile = () => {
     const data = { nodes, edges };
     const dataStr = JSON.stringify(data, null, 2);
@@ -146,7 +189,7 @@ const AutomationBuilder = () => {
     link.click();
   };
 
-  const onLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onLoadFromFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFileModalOpen(false);
     const file = event.target.files?.[0];
     if (!file) {
@@ -203,12 +246,14 @@ const AutomationBuilder = () => {
             <ToolBoxPannel 
               deleteNode={onDeleteNode}
               onSave={saveToFile}
+              onSaveEndPoint={onSave}
+              onLoadEndPoint={onLoad}
             />
           </Panel>
         </ReactFlow>
       </div>
       {nodeModalOpen && <EditNodeModal addNode={onAddNewNode} updateNode={onUpdateNode} closeModalHandler={()=>setNodeModalOpen(false)} />}
-      {fileModalOpen && <OpenFileModal onLoad={onLoad} closeModalHandler={()=>setFileModalOpen(false)}/>}
+      {fileModalOpen && <OpenFileModal onLoad={onLoadFromFile} closeModalHandler={()=>setFileModalOpen(false)}/>}
       <DetailsBar />
       <ToastContainer hideProgressBar position='top-right' autoClose={1000}/>
     </div>
