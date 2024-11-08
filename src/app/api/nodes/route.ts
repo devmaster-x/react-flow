@@ -5,7 +5,15 @@ let savedNodes = initialNodes;
 let savedEdges = initialEdges;
 
 export async function GET() {
-  return NextResponse.json({ nodes: savedNodes, edges: savedEdges }, { status: 200 });
+  return new Response(
+    JSON.stringify({
+      nodes: savedNodes,
+      edges: savedEdges,
+    }),
+    {
+      status: 200,
+    }
+  );
 }
 
 export async function PUT(request: NextRequest) {
