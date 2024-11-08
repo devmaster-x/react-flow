@@ -20,7 +20,6 @@ import { useDnD } from "../contexts/DnDContext";
 import "@xyflow/react/dist/style.css";
 import "./styles.css";
 import EmailNode from "./nodes/EmailNode";
-import { NodeType } from "./nodes/type";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -36,7 +35,7 @@ const AutomationBuilder = () => {
   const { screenToFlowPosition } = useReactFlow();
   const { type } = useDnD();
 
-  const [nodes, setNodes, onNodesChange] = useNodesState<NodeType>([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   // we load the data from the server on mount
