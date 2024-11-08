@@ -18,41 +18,41 @@
   font-size: 14px;
   color: #333;
 
-  
-.sidebar.dragging {
-  cursor: grabbing;
-}
+    
+  .dragging {
+    cursor: grabbing;
+  }
 
-/* Sidebar Title */
-.sidebar h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #007BFF;
-}
+  /* Sidebar Title */
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #007BFF;
+  }
 
-/* Node List Styles */
-.node-list {
-  max-height: calc(100% - 50px);
-  overflow-y: auto;
-}
+  /* Node List Styles */
+  .node-list {
+    max-height: calc(100% - 50px);
+    overflow-y: auto;
+  }
 
-/* Individual Node Styles */
-.node-item {
-  background-color: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
+  /* Individual Node Styles */
+  .node-item {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
 
-.node-item strong {
-  font-weight: bold;
-}
+  .node-item strong {
+    font-weight: bold;
+  }
 
-.node-item .coordinates {
-  font-size: 12px;
-  color: #555;
-}
+  .node-item .coordinates {
+    font-size: 12px;
+    color: #555;
+  }
 }

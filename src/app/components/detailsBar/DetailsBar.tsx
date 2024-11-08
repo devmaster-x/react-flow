@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNodes } from "@xyflow/react";
-import "./toolboxpannel.css"; 
+import { useModalContext } from "@/contexts/ModalContext";
+import "./DetailsBar.css"; 
 
 function DetailsBar() {
   const nodes = useNodes();
@@ -9,6 +10,7 @@ function DetailsBar() {
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const { visibleDetailBar } = useModalContext();
 
   // Start dragging (React MouseEvent)
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -59,8 +61,9 @@ function DetailsBar() {
       window.removeEventListener("mousemove", onMouseMove as EventListener);
       window.removeEventListener("mouseup", onMouseUp);
     };
-  }, [isDragging, position]);
+  }, []);
 
+  if(!visibleDetailBar) return(<></>)
   return (
     <aside
       className={`detailsbar ${isDragging ? "dragging" : ""}`}
@@ -75,6 +78,7 @@ function DetailsBar() {
         {nodes.map((node) => (
           <div key={node.id} className="node-item">
             <strong>Node {node.id}</strong>
+            <div> type : {node.type}</div>
             <div className="coordinates">
               x: {node.position.x.toFixed(2)}, y: {node.position.y.toFixed(2)}
             </div>

@@ -31,6 +31,12 @@
   color: #007bff;
 }
 
+.dndnode.disabled {
+  cursor: not-allowed;
+  opacity: 0.5; /* Makes the icon appear faded */
+  pointer-events: none; /* Prevents clicking */
+}
+
 .separator {
   height: 30px;
   width: 1px;
