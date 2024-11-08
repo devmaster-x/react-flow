@@ -1,6 +1,5 @@
-import { Edge, Node } from "@xyflow/react";
-
-export const initialNodes: Node[] = [
+import { NodeType, EdgeType } from "@/components/nodes/type";
+export const initialNodes: NodeType[] = [
   {
     id: "1",
     position: { x: 0, y: 0 },
@@ -21,4 +20,4 @@ export const initialNodes: Node[] = [
   },
 ];
 
-export const initialEdges: Edge[] = [{ id: "e1-2", source: "1", target: "2" }];
+export const initialEdges: EdgeType[] = [{ id: "e1-2", source: "1", target: "2" }];
