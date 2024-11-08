@@ -1,0 +1,39 @@
+.toolbox-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Space between each item */
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.dndnode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.dndnode:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+.separator {
+  height: 30px;
+  width: 1px;
+  background-color: #ddd;
+  margin: 0 8px;
+}

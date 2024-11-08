@@ -1,0 +1,58 @@
+/* style.css */
+
+/* General Sidebar Styles */
+.detailsbar {
+  position: absolute;
+  top: 50px; /* You can adjust this for initial positioning */
+  left: 50px; /* You can adjust this for initial positioning */
+  width: 250px;
+  height: 400px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  cursor: grab;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #333;
+
+  
+.sidebar.dragging {
+  cursor: grabbing;
+}
+
+/* Sidebar Title */
+.sidebar h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #007BFF;
+}
+
+/* Node List Styles */
+.node-list {
+  max-height: calc(100% - 50px);
+  overflow-y: auto;
+}
+
+/* Individual Node Styles */
+.node-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.node-item strong {
+  font-weight: bold;
+}
+
+.node-item .coordinates {
+  font-size: 12px;
+  color: #555;
+}
+}

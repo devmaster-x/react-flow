@@ -8,18 +8,19 @@ import {
   MiniMap,
   NodeTypes,
   OnConnect,
+  Panel,
   ReactFlow,
   useEdgesState,
   useNodesState,
   useReactFlow,
 } from "@xyflow/react";
-
-import Sidebar from "./Sidebar";
 import { useDnD } from "../contexts/DnDContext";
 
 import "@xyflow/react/dist/style.css";
 import "./styles.css";
 import EmailNode from "./nodes/EmailNode";
+import { NodeType } from "./nodes/type";
+import { ToolBoxPannel } from "./toolboxPannel";
 
 let id = 0;
 const getId = () => `dndnode_${id++}`;
@@ -35,7 +36,7 @@ const AutomationBuilder = () => {
   const { screenToFlowPosition } = useReactFlow();
   const { type } = useDnD();
 
-  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [nodes, setNodes, onNodesChange] = useNodesState<NodeType>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   // we load the data from the server on mount
@@ -103,9 +104,11 @@ const AutomationBuilder = () => {
           <MiniMap zoomable pannable />
           <Controls />
           <Background />
+          <Panel position="top-center" >
+            <ToolBoxPannel />
+          </Panel>
         </ReactFlow>
       </div>
-      <Sidebar />
     </div>
   );
 };

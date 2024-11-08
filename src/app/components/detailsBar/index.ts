@@ -1,0 +1,1 @@
+export { default as DetailsBar} from './DetailsBar'
