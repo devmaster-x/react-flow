@@ -146,19 +146,6 @@ const AutomationBuilder = () => {
     link.click();
   };
 
-  // Load from a file (read JSON)
-  // const loadData = async () => {
-  //   try {
-  //     const response = await fetch('/nodes_data.json');
-  //     if (!response.ok) throw new Error('Failed to fetch data');
-  //     const data = await response.json();
-  //     setNodes(data.nodes);
-  //     setEdges(data.edges);
-  //   } catch (error) {
-  //     console.error('Error loading file', error);
-  //     alert('Error loading data');
-  //   }
-  // };
   const onLoad = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFileModalOpen(false);
     const file = event.target.files?.[0];

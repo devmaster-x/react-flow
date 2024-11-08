@@ -1,10 +1,7 @@
-/* style.css */
-
-/* General Sidebar Styles */
 .detailsbar {
   position: absolute;
-  top: 50px; /* You can adjust this for initial positioning */
-  left: 50px; /* You can adjust this for initial positioning */
+  top: 50px;
+  left: 50px;
   width: 250px;
   height: 400px;
   background-color: #ffffff;
@@ -17,13 +14,11 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #333;
-
-    
+   
   .dragging {
     cursor: grabbing;
   }
 
-  /* Sidebar Title */
   h3 {
     font-size: 18px;
     font-weight: 600;
@@ -31,13 +26,11 @@
     color: #007BFF;
   }
 
-  /* Node List Styles */
   .node-list {
     max-height: calc(100% - 50px);
     overflow-y: auto;
   }
 
-  /* Individual Node Styles */
   .node-item {
     background-color: #f9f9f9;
     padding: 10px;

@@ -33,7 +33,7 @@
 }
 
 .modal-input:focus {
-  border-color: #007bff; /* Change to your preferred accent color */
+  border-color: #007bff;
 }
 
 /* Submit button styling */
@@ -41,7 +41,7 @@
   margin-top: 10px;
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #007bff; /* Primary color */
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
@@ -51,5 +51,5 @@
 }
 
 .modal-submit-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
 }

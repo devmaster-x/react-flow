@@ -38,7 +38,7 @@
 }
 
 .close-icon:hover {
-  color: #ff5a5a; /* Change color on hover */
+  color: #ff5a5a;
 }
 
 /* Content styling */
@@ -47,11 +47,11 @@
 }
 
 .p-4 {
-  padding: 16px; /* padding utility class */
+  padding: 16px;
 }
 
 .text-gray-500 {
-  color: #6b7280; /* Tailwind's gray-500 color */
+  color: #6b7280;
 }
 
 /* Optional: fade-in animation */
