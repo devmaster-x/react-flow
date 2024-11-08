@@ -1,7 +1,7 @@
 import { initialEdges, initialNodes } from "@/Constants";
 import { NextRequest } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET() {
   return new Response(
     JSON.stringify({
       nodes: initialNodes,
