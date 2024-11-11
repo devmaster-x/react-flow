@@ -115,6 +115,7 @@ const AutomationBuilder = () => {
       );
       toast.success(`${_updateNode.data.label} updated.`);
       setNewNode(null);
+      setCurrentNode(_updateNode);
     }
   };
 

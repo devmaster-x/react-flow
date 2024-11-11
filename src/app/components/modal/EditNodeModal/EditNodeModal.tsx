@@ -8,7 +8,7 @@ import "./EditNodeModal.css";
 
 const EditNodeModal: FC<EditNodeModalProps> = ({ addNode, updateNode, closeModalHandler }) => {
   const { currentNode, newNode, setNewNode } = useNodeContext();
-  const [nodeName, setNodeName] = useState(!newNode ? !currentNode ? "" : currentNode.data.label : newNode.data.label);
+  const [nodeName, setNodeName] = useState(!newNode ? !currentNode ? "" : currentNode.data.label : newNode.id);
 
   const actionHandler = () => {
     if (!nodeName) {
