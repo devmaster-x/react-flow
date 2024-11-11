@@ -24,7 +24,6 @@ import { useNodeContext } from "@/contexts/NodeContext";
 import { EditNodeModal, OpenFileModal } from "./modal";
 import { ToolBoxPannel } from "./toolboxPannel";
 import { EdgeType, NodeType } from "./nodes/type";
-import { DetailsBar } from "./detailsBar";
 import { InputNode, OutputNode, DefaultNode } from "./nodes";
 import "./styles.css";
 
@@ -57,7 +56,7 @@ const AutomationBuilder = () => {
       setEdges(automation.edges);
     };
     getData();
-    toast.success("success");
+    toast.success("Data loaded successfully.");
   }, [setNodes, setEdges]);
 
   // various callbacks
@@ -254,7 +253,6 @@ const AutomationBuilder = () => {
       </div>
       {nodeModalOpen && <EditNodeModal addNode={onAddNewNode} updateNode={onUpdateNode} closeModalHandler={()=>setNodeModalOpen(false)} />}
       {fileModalOpen && <OpenFileModal onLoad={onLoadFromFile} closeModalHandler={()=>setFileModalOpen(false)}/>}
-      <DetailsBar />
       <ToastContainer hideProgressBar position='top-right' autoClose={1000}/>
     </div>
   );

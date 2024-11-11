@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNodes } from "@xyflow/react";
 import { useModalContext } from "@/contexts/ModalContext";
-import "./DetailsBar.css"; 
+import { NodeType } from "../nodes/type";
+import "./DetailsBar.css";
 
-function DetailsBar() {
-  const nodes = useNodes();
+const DetailsBar: React.FC = () => {
+  const nodes = useNodes<NodeType>();
+  const { visibleDetailBar } = useModalContext();
 
-  // State to manage position of sidebar
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const { visibleDetailBar } = useModalContext();
 
-  // Start dragging (React MouseEvent)
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     setIsDragging(true);
     setOffset({
       x: e.clientX - position.x,
@@ -21,64 +22,57 @@ function DetailsBar() {
     });
   };
 
-  // During dragging (Native MouseEvent)
-  const onMouseMove = (e: MouseEvent) => {
+  const onMouseMove = useCallback((e: MouseEvent) => {
     if (!isDragging) return;
     setPosition({
       x: e.clientX - offset.x,
       y: e.clientY - offset.y,
     });
-  };
+  }, [isDragging, offset]);
 
-  // Stop dragging
-  const onMouseUp = () => {
+  const onMouseUp = useCallback(() => {
     setIsDragging(false);
-  };
+  }, []);
 
-  // Dock logic (optional)
-  const dockToEdge = () => {
-    if (position.x < 100) {
-      setPosition({ x: 0, y: position.y });
-    } else if (position.x > window.innerWidth - 100) {
-      setPosition({ x: window.innerWidth - 200, y: position.y });
-    }
-  };
+  const dockToEdge = useCallback(() => {
+    setPosition((prevPosition) => {
+      if (prevPosition.x < 100) {
+        return { x: 0, y: prevPosition.y };
+      } else if (prevPosition.x > window.innerWidth - 100) {
+        return { x: window.innerWidth - 200, y: prevPosition.y };
+      }
+      return prevPosition;
+    });
+  }, []);
 
   useEffect(() => {
     if (isDragging) {
-      // Add event listeners (casting to MouseEvent for global window events)
-      window.addEventListener("mousemove", onMouseMove as EventListener);
+      window.addEventListener("mousemove", onMouseMove);
       window.addEventListener("mouseup", onMouseUp);
     } else {
-      // Remove event listeners
-      window.removeEventListener("mousemove", onMouseMove as EventListener);
-      window.removeEventListener("mouseup", onMouseUp);
       dockToEdge();
     }
 
-    // Cleanup on component unmount or when dragging stops
     return () => {
-      window.removeEventListener("mousemove", onMouseMove as EventListener);
+      window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
     };
-  }, []);
+  }, [isDragging, onMouseMove, onMouseUp, dockToEdge]);
 
-  if(!visibleDetailBar) return(<></>)
+  if (!visibleDetailBar) return null;
+
   return (
     <aside
       className={`detailsbar ${isDragging ? "dragging" : ""}`}
-      style={{
-        top: position.y,
-        left: position.x,
-      }}
+      style={{ top: position.y, left: position.x }}
       onMouseDown={onMouseDown}
     >
       <h3>Flow Sidebar</h3>
       <div className="node-list">
         {nodes.map((node) => (
           <div key={node.id} className="node-item">
-            <strong>Node {node.id}</strong>
-            <div> type : {node.type}</div>
+            <strong>{node.data.label}</strong>
+            <div>Type: {node.type}</div>
             <div className="coordinates">
               x: {node.position.x.toFixed(2)}, y: {node.position.y.toFixed(2)}
             </div>
@@ -87,6 +81,6 @@ function DetailsBar() {
       </div>
     </aside>
   );
-}
+};
 
 export default DetailsBar;
